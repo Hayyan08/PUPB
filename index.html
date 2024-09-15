@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outdoor AR Paintball Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e7f3ff;
+            color: #333;
+        }
+        header {
+            background-color: #2C3E50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #1ABC9C;
+            padding: 15px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+            font-weight: bold;
+        }
+        .hero {
+            background: url('hero-image.jpg') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            text-align: center;
+        }
+        section {
+            padding: 40px;
+            text-align: center;
+        }
+        .button {
+            background-color: #1ABC9C;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        footer {
+            background-color: #2C3E50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .features {
+            display: flex;
+            justify-content: space-around;
+        }
+        .feature-box {
+            width: 30%;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+        }
+        .feature-box h3 {
+            margin-top: 0;
+            color: #1ABC9C;
+        }
+        .feature-box p {
+            color: #555;
+        }
+        .code-block {
+            background: #f4f4f4;
+            border-left: 5px solid #1ABC9C;
+            padding: 10px;
+            margin: 20px 0;
+            text-align: left;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Outdoor AR Paintball Game</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">How to Play</a>
+        <a href="#">Features</a>
+        <a href="#">Download</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div>
+            <h2>Join the Ultimate Outdoor Battle!</h2>
+            <button class="button">Get Started</button>
+        </div>
+    </div>
+
+    <!-- About the Game Section -->
+    <section>
+        <h2>What is the Outdoor AR Paintball Game?</h2>
+        <p>The Outdoor AR Paintball Game is an action-packed augmented reality experience where players can tag each other in real-time using their phones. Get outside, find other players, and engage in a thrilling digital paintball battle. It's a fun way to explore the outdoors and challenge your friends!</p>
+    </section>
+
+    <!-- Features Section -->
+    <section>
+        <h2>Game Features</h2>
+        <div class="features">
+            <div class="feature-box">
+                <h3>Real-Time Geolocation</h3>
+                <p>Track nearby players within a 500-1000 meter radius and engage with them in real time.</p>
+            </div>
+            <div class="feature-box">
+                <h3>Augmented Reality Combat</h3>
+                <p>Use your phone's camera to target and tag opponents. It's as close to real-life paintball as you can get!</p>
+            </div>
+            <div class="feature-box">
+                <h3>Bounty System</h3>
+                <p>Earn points by tagging high-value targets in your area. The more you play, the higher your rewards!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section>
+        <h2>Download the App</h2>
+        <p>Available on both iOS and Android. Join the outdoor fun today!</p>
+        <button class="button">Download for iOS</button>
+        <button class="button">Download for Android</button>
+    </section>
+
+    <!-- ARKit Integration Section -->
+    <section>
+        <h2>Getting Started with ARKit (iOS)</h2>
+        <p>If you're interested in developing the iOS version of the AR Paintball game, follow these steps:</p>
+        <h3>1. Set Up Your Project</h3>
+        <p>Create a new ARKit project in Xcode.</p>
+        <h3>2. Implement ARKit Code</h3>
+        <div class="code-block">
+            import UIKit<br>
+            import SceneKit<br>
+            import ARKit<br><br>
+
+            class ViewController: UIViewController, ARSCNViewDelegate {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;@IBOutlet var sceneView: ARSCNView!<br><br>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;override func viewDidLoad() {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super.viewDidLoad()<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sceneView.delegate = self<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sceneView.showsStatistics = true<br><br>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let configuration = ARWorldTrackingConfiguration()<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sceneView.session.run(configuration)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if let touch = touches.first {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let touchLocation = touch.location(in: sceneView)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let hitTestResults = sceneView.hitTest(touchLocation, types: .featurePoint)<br><br>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if let result = hitTestResults.first {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addPaintball(at: result.worldTransform)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;func addPaintball(at transform: matrix_float4x4) {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let sphere = SCNSphere(radius: 0.1)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let material = SCNMaterial()<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;material.diffuse.contents = UIColor.red<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sphere.materials = [material]<br><br>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let node = SCNNode(geometry: sphere)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;node.simdTransform = transform<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sceneView.scene.rootNode.addChildNode(node)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+            }
+        </div>
+        <h3>3. Test Your App</h3>
+        <p>Run the app on a physical iOS device to test the AR features.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Outdoor AR Paintball Game. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
